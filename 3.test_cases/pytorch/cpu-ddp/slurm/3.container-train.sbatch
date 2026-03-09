@@ -33,4 +33,4 @@ fi
 
 srun ${AUTO_RESUME} -l "${ARGS[@]}" torchrun \
     "${TORCHRUN_ARGS[@]}" \
-    $(dirname "$PWD")/ddp.py 5000000 10
+    $(dirname "$PWD")/ddp.py 50 10

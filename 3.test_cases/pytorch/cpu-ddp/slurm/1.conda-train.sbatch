@@ -23,4 +23,4 @@ fi
 
 srun ${AUTO_RESUME} ./pt_cpu/bin/torchrun \
     "${TORCHRUN_ARGS[@]}" \
-    $(dirname "$PWD")/ddp.py 5000000 10
+    $(dirname "$PWD")/ddp.py 50 10
