@@ -167,8 +167,11 @@ def load_train_objs():
     if rank == 0:
         datasets.MNIST(root='./data', train=True, download=True)
     torch.distributed.barrier()
-    train_set = datasets.MNIST(root='./data', train=True, download=False, transform=transform)
-    
+    train_set = datasets.MNIST(root='./data', 
+                               train=True, 
+                               download=False, 
+                               transform=transform)
+     
     # Create model and optimizer
     model = MLP()
     optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
