@@ -163,13 +163,11 @@ def load_train_objs():
         transforms.Normalize((0.1307,), (0.3081,))
     ])
     
-    # Load MNIST dataset
-    train_set = datasets.MNIST(
-        root='./data',
-        train=True,
-        download=True,
-        transform=transform
-    )
+    rank = int(os.environ.get("RANK", 0))
+    if rank == 0:
+        datasets.MNIST(root='./data', train=True, download=True)
+    torch.distributed.barrier()
+    train_set = datasets.MNIST(root='./data', train=True, download=False, transform=transform)
     
     # Create model and optimizer
     model = MLP()
